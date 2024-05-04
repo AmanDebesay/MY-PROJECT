@@ -1,0 +1,64 @@
+from mlxtend.data import loadlocal_mnist
+import platform
+from sklearn.linear_model import LogisticRegression
+import tensorflow
+from tensorflow import keras
+from tensorflow.keras import models
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras import utils
+from tensorflow.keras import optimizers
+from matplotlib import pyplot as plt
+# Import PyTorch libraries
+import torch
+import torchvision
+import torchvision.transforms as transforms
+import torch.nn as nn
+import torch.optim as optim
+from torch.autograd import Variable
+import torch.nn.functional as F
+
+# Other libraries we'll use
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+print("Libraries imported - ready to use PyTorch", torch.__version__)
+
+else:
+    X_train, y_train = loadlocal_mnist(
+        images_path='train-images.idx3-ubyte',
+        labels_path='train-labels.idx1-ubyte')
+if not platform.system() == 'Windows':
+    X_test, y_test = loadlocal_mnist(
+        images_path='t10k-images.idx3-ubyte',
+        labels_path='t10k-labels.idx1-ubyte')
+
+else:
+    X_test, y_test = loadlocal_mnist(
+        images_path='t10k-images.idx3-ubyte',
+        labels_path='t10k-labels.idx1-ubyte')
+
+
+# Get the class names
+My_classes = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+if not platform.system() == 'Windows':
+    X_train, y_train = loadlocal_mnist(
+        images_path='train-images-idx3-ubyte',
+        labels_path='train-labels-idx1-ubyte')
+
+
+# Show the first image in each folder
+fig = plt.figure(figsize=(8, 12))
+i = 0
+for sub_dir in os.listdir(data_path):
+    i+=1
+    img_file = os.listdir(os.path.join(data_path,sub_dir))[0]
+    img_path = os.path.join(data_path, sub_dir, img_file)
+    img = mpimg.imread(img_path)
+    a=fig.add_subplot(1, len(classes),i)
+    a.axis('off')
+    imgplot = plt.imshow(img)
+    a.set_title(img_file)
+plt.show()
